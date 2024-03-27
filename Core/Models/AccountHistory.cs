@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    internal class AccountHistory
+    public class AccountHistory : ModelBase
     {
     }
 }

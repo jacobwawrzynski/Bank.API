@@ -18,6 +18,17 @@ builder.Services.AddDbContext<AppDbContext>(
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
     .AddEntityFrameworkStores<AppDbContext>();
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Lockout.AllowedForNewUsers = false;
+    options.Lockout.MaxFailedAccessAttempts = -1; // disabled
+
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequiredLength = 4;
+    options.Password.RequireDigit = false;
+});
 
 var app = builder.Build();
 

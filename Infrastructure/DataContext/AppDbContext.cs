@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.DataContext
 {
-    public class AppDbContext : IdentityDbContext<IdentityUser>
+    public class AppDbContext : IdentityDbContext<User>
     {
         public AppDbContext()
         {

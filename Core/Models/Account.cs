@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    internal class Account
+    public class Account : ModelBase
     {
+        public string? UserId { get; set; }
+        public User? User { get; set; }
     }
 }

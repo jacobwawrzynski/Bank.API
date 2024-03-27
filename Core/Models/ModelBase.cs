@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    public class CustomerData
+    public class ModelBase
     {
+        public Guid Id { get; set; }
     }
 }
