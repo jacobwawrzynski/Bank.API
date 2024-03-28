@@ -14,6 +14,7 @@ namespace Core.Models
         public string Forename { get; set; }
         public string Surname { get; set; }
         public string Address { get; set; }
+        
         [RegularExpression(
             "^(\\+\\d{1,2}\\s?)?1?\\-?\\.?\\s?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$\r\n",
             ErrorMessage = "Invalid Phone number")]

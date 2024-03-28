@@ -1,27 +1,27 @@
+using Core.Models;
 using Infrastructure.DataContext;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// In memory Db for testing purposes
+//builder.Services.AddDbContext<AppDbContext>(
+//    options => options.UseSqlite("Data Source=../AppDb.db"));
+
+// Temporary in memory Db for testing purposes
 builder.Services.AddDbContext<AppDbContext>(
     options => options.UseInMemoryDatabase("AppDb"));
 
 builder.Services.AddAuthorization();
-builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+builder.Services.AddIdentityApiEndpoints<User>()
     .AddEntityFrameworkStores<AppDbContext>();
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Lockout.AllowedForNewUsers = false;
-    options.Lockout.MaxFailedAccessAttempts = -1; // disabled
 
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
@@ -32,14 +32,13 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.MapIdentityApi<IdentityUser>();
+app.MapIdentityApi<User>();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
