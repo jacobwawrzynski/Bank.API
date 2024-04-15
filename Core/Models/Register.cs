@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    public class Register
+    public class Register : ModelBase
     {
         public string Email { get; set; }
         public string Password { get; set; }
